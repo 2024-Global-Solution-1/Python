@@ -1,18 +1,41 @@
 # Função de verificar se é um número
-# É necessario passar o text que pede o tal número
-def VerificarNum(text):
+def VerificarNum(text, tipo = float): # É necessario passar o text que pede o tal número e o tipo de dado se é Inteiro ou Real
+
     repetirVeri = True
     msg = text
 
     while repetirVeri == True:
-        try:
-            var = int(input(msg))
-            repetirVeri = False
-        except:
-            msg = "\n\nDigite um valor que seja um número\n" + text
+
+        if tipo == int:
+            try:
+                var = int(input(msg))
+                repetirVeri = False
+            except:
+                msg = "\n\nDigite um valor que seja um número inteiro\n" + text
+        else: 
+            try:
+                var = float(input(msg))
+                repetirVeri = False
+            except:
+                msg = "\n\nDigite um valor que seja um número \n" + text
 
     return var
 
+
+def verificarSN(text):
+    respostaInvalida = True
+    msg = text
+
+    while respostaInvalida == True:
+        escolha = input(msg).upper()[0]
+
+        if escolha != "S" and escolha != "N":
+            msg = "Desculpe não entendi digite um valor correto por favor (S/N)\n==> "
+
+        else:
+            respostaInvalida = False
+
+    return escolha
 
 # Função do menu principal
 def menuPrincipal():
@@ -33,13 +56,97 @@ def menuPrincipal():
     respostaInvalida = True
     while respostaInvalida == True:
         print(menu)
-        opcaoMenu = VerificarNum(msgMenu)
+        opcaoMenu = VerificarNum(msgMenu, int)
 
-        if opcaoMenu >= 1 and opcaoMenu <= 5:
-            respostaInvalida == False
+        if opcaoMenu > 0 and opcaoMenu < 6:
+            respostaInvalida = False
         else:
             msgMenu = "\nPor favor insira um valor dentre as opções do menu\n" + msgMenu
     return opcaoMenu
+
+
+def subMenu (text = "\n"):
+    menu = ("-----------------------------------------" + text +
+            "\nO que o senhor(a) deseja fazer agora?"+
+            "\n\n[1] - Voltar para o Menu Principal"+
+            "\n[2] - Finalizar Programa" + 
+            "\n-----------------------------------------" )
+    mensagem = "Digite aqui o valor correspondente a função desejada\n==> "
+    respostaInvalida = True
+
+    while respostaInvalida == True:
+        print(menu)
+        resposta = input(mensagem)
+
+        if resposta != "1" and resposta != "2":
+            mensagem = "Por favor digite algum valor correspondente com o Menu\n==> "
+            
+        else: 
+            respostaInvalida = False
+
+    return resposta
+
+
+def pegadaCarbono():
+
+    print("\n\nPara calcular a sua pegada de Carbono anual devemos pegar algumas informações.(Usamos a média Brasileira do fator de emissão de cada transporte)")
+
+    #Consumo de transporte
+    possuiVeiculo = verificarSN("A sua pessoa anda de veículo próprio?(S/N)\n==> ")
+
+    if possuiVeiculo == "S":
+        tipoVec = input("O seu veículo é movido a que?(Gasolina, Diesel ou Etanol)\n==> ")[0]
+
+        if tipoVec == "G":
+            fatorEmissaoCar = 2.31
+        elif tipoVec == "D":
+            fatorEmissaoCar = 2.68
+        elif tipoVec == "E": 
+            fatorEmissaoCar = 1.61
+
+        kmMediaCar = VerificarNum("Qual a distância média anual em Km que você percorre\n==> ")
+        consumoCombus = VerificarNum("Em 1 Quilômetro quantos Litros seu carro consome em média\n==> ")
+
+        emissaoCar = fatorEmissaoCar * kmMediaCar * consumoCombus
+    else: 
+        emissaoCar = 0
+
+    andouAviao = verificarSN("A sua pessoa andou de avião esse ano?(S/N)\n==> ")
+
+    if andouAviao == "S":
+        KmMediaAvi = VerificarNum("Qual a quantidade média de Km anual que você percorreu?\n==> ")
+        fatorEmissaoAvi = 0.13
+
+        emissaoAvi = KmMediaAvi * fatorEmissaoAvi
+    else:
+        emissaoAvi = 0
+
+    TransporPublic = verificarSN("A sua pessoa utiliza Transporte Público?(S/N)\n==> ")
+
+    if TransporPublic == "S":
+        KmMediaPublic = VerificarNum("Qual a distância em KM média anual que o senhor percorre nos transportes Públicos")
+        fatorEmissaoPublic = 0.064
+
+        emissaoPublic = KmMediaPublic * fatorEmissaoPublic
+    else:
+        emissaoPublic = 0
+
+    # Consumo em Casa
+    msgKWh = "Qual a quantidade de energia que você consome na sua casa anualmente em kWh\n==> "
+
+    kWhAnual = VerificarNum(msgKWh)
+
+    pegadaCarbonoPessoa = emissaoPublic + emissaoAvi + emissaoCar + kWhAnual
+
+    print(f'A sua pegada de Carbono anual é de igual a {pegadaCarbonoPessoa} KG CO2')
+
+
+    resposta_user = subMenu()
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
 
 
 # Função da opção Outros
