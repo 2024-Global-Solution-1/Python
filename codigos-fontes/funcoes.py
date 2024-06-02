@@ -2,15 +2,16 @@
 # É necessario passar o text que pede o tal número
 def VerificarNum(text):
     repetirVeri = True
+    msg = text
 
     while repetirVeri == True:
         try:
-            var = int(input(text))
+            var = int(input(msg))
+            repetirVeri = False
         except:
-            
+            msg = "\n\nDigite um valor que seja um número\n" + text
 
-
-
+    return var
 
 
 # Função do menu principal
@@ -25,14 +26,19 @@ def menuPrincipal():
     [4] - Sou um Doador, me mostre algumas ONG's para doar
     [5] - Outros
 
-    ----------------------------------------------------------------------------------"""
-
-    print(menuPrincipal)
+    ----------------------------------------------------------------------------------\n\n"""
 
     msgMenu = "Digite o número correspondente com a sua opção desejada\n==> "
-
-    opcaoMenu = input(msgMenu)
     
+    respostaInvalida = True
+    while respostaInvalida == True:
+        print(menu)
+        opcaoMenu = VerificarNum(msgMenu)
+
+        if opcaoMenu >= 1 and opcaoMenu <= 5:
+            respostaInvalida == False
+        else:
+            msgMenu = "\nPor favor insira um valor dentre as opções do menu\n" + msgMenu
     return opcaoMenu
 
 

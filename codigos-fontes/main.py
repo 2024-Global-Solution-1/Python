@@ -1,4 +1,5 @@
 import funcoes
+repetir = True
 
 while repetir == True:
     opcao = funcoes.menuPrincipal()
