@@ -10,5 +10,7 @@ while repetir == True:
     elif opcao == 3:
         repetir = funcoes.cadastroOng()
 
+    elif opcao == 4:
+        repetir = funcoes.mostrarOgns()
     if opcao == 5:
         repetir = funcoes.outros()

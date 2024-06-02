@@ -44,16 +44,16 @@ def verificarSN(text):
 # Função do menu principal
 def menuPrincipal():
     menu = """
-    ----------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------
                                         BEM VINDO
                             
     [1] - Quero receber informações importantes sobre o Ôceano
     [2] - Quero Calcular minha pegada de carbono
     [3] - Sou uma ONG a favor de ajudar do Ôceno e quero me cadastrar para ganhar repercussão
-    [4] - Sou um Doador, me mostre algumas ONG's para doar
+    [4] - Sou um Doador, me mostre algumas ONG's para doar ou apenas quero conhecer as Ong
     [5] - Outros
 
-    ----------------------------------------------------------------------------------\n\n"""
+    ------------------------------------------------------------------------------------------------\n\n"""
 
     msgMenu = "Digite o número correspondente com a sua opção desejada\n==> "
     
@@ -174,7 +174,42 @@ def cadastroOng():
         return True
     else:
         return False
+
+
+# Função para disponibilizar ONG's para possiveís doadores
+def mostrarOgns():
+
+    arquivo = open("codigos-fontes\ongs.csv", "r", encoding="utf-8")
+    ongsCadastradas = []
+
+    repetirLeitor = True
+    while repetirLeitor == True:
+        linhaLida = arquivo.readline()
+        if linhaLida != "":
+            linhaLida = linhaLida.replace("\n", "")
+            listaDados = linhaLida.split(";")
+            ong = {}
+            ong["nome"] = listaDados[0]
+            ong["missao"] = listaDados[1]
+            ong["website"] = listaDados[2]
+
+            ongsCadastradas.append(ong)
+        else:
+            repetirLeitor = False
+    ongsCadastradas = [elemento for elemento in ongsCadastradas[1:]]
+    contador = 1
+    for i in ongsCadastradas:
+        print(f'\nOng {contador}\n\nNome:{i["nome"]}\nMissão: {i["missao"]}\nWebsite: {i["website"]}')
+        contador += 1
+    arquivo.close()
     
+    resposta_user = subMenu("\nEssas são as Ongs que temos Cadastradas")
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
+
 # Função da opção Outros
 def outros():
     print("Entre em contato com nosso suporte por e-mail ou github;")
