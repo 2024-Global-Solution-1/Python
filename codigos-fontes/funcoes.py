@@ -1,3 +1,5 @@
+import classes
+
 # Função de verificar se é um número
 def VerificarNum(text, tipo = float): # É necessario passar o text que pede o tal número e o tipo de dado se é Inteiro ou Real
 
@@ -22,6 +24,7 @@ def VerificarNum(text, tipo = float): # É necessario passar o text que pede o t
     return var
 
 
+#Função que verifica se a resposta é S ou N
 def verificarSN(text):
     respostaInvalida = True
     msg = text
@@ -37,6 +40,7 @@ def verificarSN(text):
 
     return escolha
 
+
 # Função do menu principal
 def menuPrincipal():
     menu = """
@@ -45,7 +49,7 @@ def menuPrincipal():
                             
     [1] - Quero receber informações importantes sobre o Ôceano
     [2] - Quero Calcular minha pegada de carbono
-    [3] - Sou uma ONG em prol do Ôceno e quero me cadastrar para ganhar repercussão
+    [3] - Sou uma ONG a favor de ajudar do Ôceno e quero me cadastrar para ganhar repercussão
     [4] - Sou um Doador, me mostre algumas ONG's para doar
     [5] - Outros
 
@@ -65,6 +69,7 @@ def menuPrincipal():
     return opcaoMenu
 
 
+# Função que exibe o submenu dentro de outras funções
 def subMenu (text = "\n"):
     menu = ("-----------------------------------------" + text +
             "\nO que o senhor(a) deseja fazer agora?"+
@@ -87,6 +92,7 @@ def subMenu (text = "\n"):
     return resposta
 
 
+# Função que Calcula a pegada de Carbono de um pessoa
 def pegadaCarbono():
 
     print("\n\nPara calcular a sua pegada de Carbono anual devemos pegar algumas informações.(Usamos a média Brasileira do fator de emissão de cada transporte)")
@@ -149,6 +155,33 @@ def pegadaCarbono():
         return False
 
 
+# Função para cadastrar uma ONG
+def cadastroOng():
+    nome = input("Qual o nome da sua ONG?\n==> ")
+    sigla = input("Qual a sigla da ONG?\n==> ")
+    dataFund = input("Qual foi a data de fundação da ONG?\n==> ")
+    missao = input("Escreve uma breve descrição da missão, visão e objetivos da ONG.\n==> ")
+    ende = input("Qual o endereço em que sua ONG se encontra?\n==> ")
+    email = input("Informe qual o email de contato da ONG.\n==> ")
+    rede = input("Nos informe o user de uma rede social ou link\n==> ")
+    web = input("Disponibilize o link do Website da ONG caso tenha\n==> ")
+
+    ONG = classes.novaOng(nome,sigla,dataFund,missao,ende,email,rede,web)
+
+    resposta_user = subMenu("Cadastro de ONG conclúido")
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
+    
 # Função da opção Outros
 def outros():
     print("Entre em contato com nosso suporte por e-mail ou github;")
+
+    resposta_user = subMenu()
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
