@@ -24,6 +24,7 @@ def VerificarNum(text, tipo = float): # É necessario passar o text que pede o t
     return var
 
 
+
 #Função que verifica se a resposta é S ou N
 def verificarSN(text):
     respostaInvalida = True
@@ -41,6 +42,7 @@ def verificarSN(text):
     return escolha
 
 
+
 # Função do menu principal
 def menuPrincipal():
     menu = """
@@ -52,6 +54,7 @@ def menuPrincipal():
     [3] - Sou uma ONG a favor de ajudar do Ôceno e quero me cadastrar para ganhar repercussão
     [4] - Sou um Doador, me mostre algumas ONG's para doar ou apenas quero conhecer as Ong
     [5] - Outros
+    [6] - Sair
 
     ------------------------------------------------------------------------------------------------\n\n"""
 
@@ -62,11 +65,12 @@ def menuPrincipal():
         print(menu)
         opcaoMenu = VerificarNum(msgMenu, int)
 
-        if opcaoMenu > 0 and opcaoMenu < 6:
+        if opcaoMenu > 0 and opcaoMenu < 7:
             respostaInvalida = False
         else:
             msgMenu = "\nPor favor insira um valor dentre as opções do menu\n" + msgMenu
     return opcaoMenu
+
 
 
 # Função que exibe o submenu dentro de outras funções
@@ -90,6 +94,28 @@ def subMenu (text = "\n"):
             respostaInvalida = False
 
     return resposta
+
+
+
+# Função que exibe algumas informações importantes
+def informacoes ():
+    arquivo = open("codigos-fontes\informacoes.txt", "r" , encoding="utf-8")
+    linha = arquivo.readlines()
+    
+    contador = 0
+    for i in range(len(linha)):
+        print(linha[i])
+        contador += 1
+    #print(linha)
+    arquivo.close()
+
+    resposta_user = subMenu()
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
+
 
 
 # Função que Calcula a pegada de Carbono de um pessoa
@@ -155,6 +181,7 @@ def pegadaCarbono():
         return False
 
 
+
 # Função para cadastrar uma ONG
 def cadastroOng():
     nome = input("Qual o nome da sua ONG?\n==> ")
@@ -174,6 +201,7 @@ def cadastroOng():
         return True
     else:
         return False
+
 
 
 # Função para disponibilizar ONG's para possiveís doadores
@@ -209,6 +237,8 @@ def mostrarOgns():
         return True
     else:
         return False
+
+
 
 # Função da opção Outros
 def outros():

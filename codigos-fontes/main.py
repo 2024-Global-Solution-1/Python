@@ -4,6 +4,9 @@ repetir = True
 while repetir == True:
     opcao = funcoes.menuPrincipal()
 
+    if opcao == 1:
+        repetir = funcoes.informacoes()
+
     if opcao == 2:
         repetir = funcoes.pegadaCarbono()
 
@@ -12,5 +15,7 @@ while repetir == True:
 
     elif opcao == 4:
         repetir = funcoes.mostrarOgns()
-    if opcao == 5:
+    elif opcao == 5:
         repetir = funcoes.outros()
+    else:
+        repetir = False
