@@ -16,6 +16,9 @@ while repetir == True:
 
     elif opcao == 4:
         repetir = funcoes.mostrarOgns()
+
+    elif opcao == 5:
+        repetir = funcoes.cadastroEmpresa()
     
     elif opcao == 6:
         repetir = funcoes.cadastroUser()

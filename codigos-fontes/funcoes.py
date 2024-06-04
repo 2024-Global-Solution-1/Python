@@ -100,7 +100,7 @@ def subMenu (text = "\n"):
 
 # Função que exibe algumas informações importantes
 def informacoes ():
-    arquivo = open("codigos-fontes\informacoes.txt", "r" , encoding="utf-8")
+    arquivo = open("arquivo/informacoes.txt", "r" , encoding="utf-8")
     linha = arquivo.readlines()
     
     contador = 0
@@ -193,8 +193,9 @@ def cadastroOng():
     email = input("Informe qual o email de contato da ONG.\n==> ")
     rede = input("Nos informe o user de uma rede social ou link\n==> ")
     web = input("Disponibilize o link do Website da ONG caso tenha\n==> ")
+    senha = input("Crie uma senha para sua conta\n==> ")
 
-    ONG = classes.novaOng(nome,sigla,dataFund,missao,ende,email,rede,web)
+    ONG = classes.NovaOng(nome,sigla,dataFund,missao,ende,email,rede,web,senha)
 
     resposta_user = subMenu("Cadastro de ONG conclúido")
 
@@ -208,7 +209,7 @@ def cadastroOng():
 # Função para disponibilizar ONG's para possiveís doadores
 def mostrarOgns():
 
-    arquivo = open("codigos-fontes\ongs.csv", "r", encoding="utf-8")
+    arquivo = open("arquivos/ongs.csv", "r", encoding="utf-8")
     ongsCadastradas = []
 
     repetirLeitor = True
@@ -241,17 +242,31 @@ def mostrarOgns():
 
 
 
+# Função para cadastrar uma empresa
+def cadastroEmpresa():
+    nome = input("Qual é seu nome?\n==> ")
+    ende = input("Qual o endereço da sua casa?\n==> ")
+    tele = VerificarNum("Qual seu número de telefone?(Digite apenas os números do telefone para prosseguir)Ex: 11975700275 \n==> ", int)
+    email = input("Insira seu email de contato completo\n==> ")
+    senha = input("Crie uma senha para sua conta\n==> ")
+    tipo = input("Fale qual o tipo da sua empresa\n==> ")
+    pessoaContato = input("Fale o nome completo da pessoa da sua empresa que podemos entrar em contato\n==> ")
+
+    novaEmpresa = classes.Empresa(nome,ende,tele,email,senha,tipo,pessoaContato)
+
+
+
 # Função para cadastrar um usuario
 def cadastroUser():
     user = input("Digite o Username desejado para sua conta\n==> ")
     nome = input("Qual é seu nome?\n==> ")
-    tele = VerificarNum("Qual seu número de telefone?(Digite apenas os números do telefone para prosseguir)Ex: 11975700275 \n==> ", int)
+    telefone = VerificarNum("Qual seu número de telefone?(Digite apenas os números do telefone para prosseguir)Ex: 11975700275 \n==> ", int)
     idade = VerificarNum("Qual a sua idade?")
     ende = input("Qual o endereço da sua casa?\n==> ")
     email = input("Insira seu email de contato completo\n==> ")
     senha = input("Crie uma senha para sua conta\n==> ")
 
-    novoUser = classes.User(user,nome,tele,idade,ende,email,senha)
+    novoUser = classes.User(user,idade,senha,nome,ende,telefone,email)
 
     resposta_user = subMenu("Cadastro de Usuário Conclúido")
 
