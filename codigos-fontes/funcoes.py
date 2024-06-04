@@ -46,15 +46,16 @@ def verificarSN(text):
 # Função do menu principal
 def menuPrincipal():
     menu = """
-    ------------------------------------------------------------------------------------------------
                                         BEM VINDO
                             
     [1] - Quero receber informações importantes sobre o Ôceano
     [2] - Quero Calcular minha pegada de carbono
     [3] - Sou uma ONG a favor de ajudar do Ôceno e quero me cadastrar para ganhar repercussão
     [4] - Sou um Doador, me mostre algumas ONG's para doar ou apenas quero conhecer as Ong
-    [5] - Outros
-    [6] - Sair
+    [5] - Sou uma empresa doadora e quero me cadastradar no seu site
+    [6] - Sou um doador mas não uma empresa e quero me cadastrar
+    [7] - Outros
+    [8] - Sair
 
     ------------------------------------------------------------------------------------------------\n\n"""
 
@@ -238,6 +239,26 @@ def mostrarOgns():
     else:
         return False
 
+
+
+# Função para cadastrar um usuario
+def cadastroUser():
+    user = input("Digite o Username desejado para sua conta\n==> ")
+    nome = input("Qual é seu nome?\n==> ")
+    tele = VerificarNum("Qual seu número de telefone?(Digite apenas os números do telefone para prosseguir)Ex: 11975700275 \n==> ", int)
+    idade = VerificarNum("Qual a sua idade?")
+    ende = input("Qual o endereço da sua casa?\n==> ")
+    email = input("Insira seu email de contato completo\n==> ")
+    senha = input("Crie uma senha para sua conta\n==> ")
+
+    novoUser = classes.User(user,nome,tele,idade,ende,email,senha)
+
+    resposta_user = subMenu("Cadastro de Usuário Conclúido")
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
 
 
 # Função da opção Outros

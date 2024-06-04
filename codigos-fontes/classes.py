@@ -8,3 +8,15 @@ class novaOng():
         self.email = email
         self.redesSociais = redes
         self.webSite = web
+
+
+
+class User():
+    def __init__(self,user, nm, tele, idade, end, email, senha):
+        self.username = user
+        self.nome = nm
+        self.telefone = tele
+        self.idade = idade
+        self.endereco = end
+        self.email = email
+        self.senha = senha

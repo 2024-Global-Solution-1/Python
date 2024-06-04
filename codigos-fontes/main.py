@@ -4,6 +4,7 @@ repetir = True
 while repetir == True:
     opcao = funcoes.menuPrincipal()
 
+    print("\n")
     if opcao == 1:
         repetir = funcoes.informacoes()
 
@@ -15,7 +16,12 @@ while repetir == True:
 
     elif opcao == 4:
         repetir = funcoes.mostrarOgns()
-    elif opcao == 5:
+    
+    elif opcao == 6:
+        repetir = funcoes.cadastroUser()
+    
+    elif opcao == 7:
         repetir = funcoes.outros()
+    
     else:
         repetir = False
