@@ -8,7 +8,7 @@ while repetir == True:
     if opcao == 1:
         repetir = funcoes.informacoes()
 
-    if opcao == 2:
+    elif opcao == 2:
         repetir = funcoes.pegadaCarbono()
 
     elif opcao == 3:
