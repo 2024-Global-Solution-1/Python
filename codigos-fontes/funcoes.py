@@ -66,7 +66,7 @@ def menuPrincipal():
         print(menu)
         opcaoMenu = VerificarNum(msgMenu, int)
 
-        if opcaoMenu > 0 and opcaoMenu < 7:
+        if opcaoMenu > 0 and opcaoMenu < 9:
             respostaInvalida = False
         else:
             msgMenu = "\nPor favor insira um valor correspondente as opções do menu\n" + msgMenu
