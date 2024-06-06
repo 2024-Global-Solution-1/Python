@@ -1,7 +1,7 @@
 import classes
 
 # Função de verificar se é um número
-def VerificarNum(text, tipo = float): # É necessario passar o text que pede o tal número e o tipo de dado se é Inteiro ou Real
+def VerificarNum(text, tipo = float): # É necessario passar o text que pede o tal número e o tipo de dado: se é Inteiro ou Real
 
     repetirVeri = True
     msg = text
@@ -34,7 +34,7 @@ def verificarSN(text):
         escolha = input(msg).upper()[0]
 
         if escolha != "S" and escolha != "N":
-            msg = "Desculpe não entendi digite um valor correto por favor (S/N)\n==> "
+            msg = "Desculpe não entendi. Digite um valor correto por favor (S/N)\n==> "
 
         else:
             respostaInvalida = False
@@ -69,7 +69,7 @@ def menuPrincipal():
         if opcaoMenu > 0 and opcaoMenu < 7:
             respostaInvalida = False
         else:
-            msgMenu = "\nPor favor insira um valor dentre as opções do menu\n" + msgMenu
+            msgMenu = "\nPor favor insira um valor correspondente as opções do menu\n" + msgMenu
     return opcaoMenu
 
 
@@ -100,7 +100,7 @@ def subMenu (text = "\n"):
 
 # Função que exibe algumas informações importantes
 def informacoes ():
-    arquivo = open("arquivo/informacoes.txt", "r" , encoding="utf-8")
+    arquivo = open("arquivos/informacoes.txt", "r" , encoding="utf-8")
     linha = arquivo.readlines()
     
     contador = 0
@@ -119,7 +119,7 @@ def informacoes ():
 
 
 
-# Função que Calcula a pegada de Carbono de um pessoa
+# Função que calcula a pegada de Carbono de um pessoa
 def pegadaCarbono():
 
     print("\n\nPara calcular a sua pegada de Carbono anual devemos pegar algumas informações.(Usamos a média Brasileira do fator de emissão de cada transporte)")
@@ -188,10 +188,10 @@ def cadastroOng():
     nome = input("Qual o nome da sua ONG?\n==> ")
     sigla = input("Qual a sigla da ONG?\n==> ")
     dataFund = input("Qual foi a data de fundação da ONG?\n==> ")
-    missao = input("Escreve uma breve descrição da missão, visão e objetivos da ONG.\n==> ")
+    missao = input("Escreva uma breve descrição da missão, visão e objetivos da ONG.\n==> ")
     ende = input("Qual o endereço em que sua ONG se encontra?\n==> ")
     email = input("Informe qual o email de contato da ONG.\n==> ")
-    rede = input("Nos informe o user de uma rede social ou link\n==> ")
+    rede = input("Nos informe o username de uma rede social ou link\n==> ")
     web = input("Disponibilize o link do Website da ONG caso tenha\n==> ")
     senha = input("Crie uma senha para sua conta\n==> ")
 
