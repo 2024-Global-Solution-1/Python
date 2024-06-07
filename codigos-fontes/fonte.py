@@ -1,4 +1,36 @@
-import classes
+class Dados():
+    def __init__(self, nm, endereco, tele, em, sen):
+        self.nome = nm
+        self.endereco = endereco
+        self.telefone = tele
+        self.email = em
+        self.senha = sen
+
+
+
+class NovaOng(Dados):
+    def __init__(self, sigla, dtFund, missVis,nome,ende,telefone,email,web,senha):
+        super().__init__(nm = nome, endereco = ende, tele=telefone, em=email, sen=senha)
+        self.sigla = sigla
+        self.dataFundacao = dtFund
+        self.missaoEvisao = missVis
+        self.email = email
+        self.web = web
+
+
+
+class User(Dados):
+    def __init__(self,user, idade, senha, nome, ende, telefone, email):
+        super().__init__(nm = nome, endereco = ende, tele=telefone, em=email,sen=senha)
+        self.username = user
+        self.idade = idade
+
+
+class Empresa(Dados):
+    def __init__(self, nome, ende, telefone, email,senha, tipo, pessoaContato):
+        super().__init__(nm = nome, endereco = ende, tele=telefone, em=email, sen=senha)
+        self.tipo = tipo
+        self.pessoaDeContato = pessoaContato
 
 # Função de verificar se é um número
 def VerificarNum(text, tipo = float): # É necessario passar o text que pede o tal número e o tipo de dado: se é Inteiro ou Real
@@ -195,7 +227,7 @@ def cadastroOng():
     web = input("Disponibilize o link do Website da ONG caso tenha\n==> ")
     senha = input("Crie uma senha para sua conta\n==> ")
 
-    ONG = classes.NovaOng(nome,sigla,dataFund,missao,ende,email,rede,web,senha)
+    ONG = NovaOng(nome,sigla,dataFund,missao,ende,email,rede,web,senha)
 
     resposta_user = subMenu("Cadastro de ONG conclúido")
 
@@ -252,7 +284,14 @@ def cadastroEmpresa():
     tipo = input("Fale qual o tipo da sua empresa\n==> ")
     pessoaContato = input("Fale o nome completo da pessoa da sua empresa que podemos entrar em contato\n==> ")
 
-    novaEmpresa = classes.Empresa(nome,ende,tele,email,senha,tipo,pessoaContato)
+    novaEmpresa = Empresa(nome,ende,tele,email,senha,tipo,pessoaContato)
+
+    resposta_user = subMenu()
+
+    if resposta_user == "1":
+        return True
+    else:
+        return False
 
 
 
@@ -266,7 +305,7 @@ def cadastroUser():
     email = input("Insira seu email de contato completo\n==> ")
     senha = input("Crie uma senha para sua conta\n==> ")
 
-    novoUser = classes.User(user,idade,senha,nome,ende,telefone,email)
+    novoUser = User(user,idade,senha,nome,ende,telefone,email)
 
     resposta_user = subMenu("Cadastro de Usuário Conclúido")
 
@@ -286,3 +325,33 @@ def outros():
         return True
     else:
         return False
+    
+repetir = True
+
+while repetir == True:
+    opcao = menuPrincipal()
+
+    print("\n")
+    if opcao == 1:
+        repetir = informacoes()
+
+    elif opcao == 2:
+        repetir = pegadaCarbono()
+
+    elif opcao == 3:
+        repetir = cadastroOng()
+
+    elif opcao == 4:
+        repetir = mostrarOgns()
+
+    elif opcao == 5:
+        repetir = cadastroEmpresa()
+    
+    elif opcao == 6:
+        repetir = cadastroUser()
+    
+    elif opcao == 7:
+        repetir = outros()
+    
+    else:
+        repetir = False
